@@ -27,6 +27,8 @@ def validate_line(line: str) -> str:
         raise TypeError("entry line must be a string")
     if not line.strip():
         raise ValueError("entry line must not be only whitespace")
+    if "\n" in line or "\r" in line:
+        raise ValueError("entry line must be a single line, with no line breaks")
     if len(line) > MAX_CHARS:
         raise ValueError(
             f"entry line is {len(line)} characters, over the {MAX_CHARS} limit"
